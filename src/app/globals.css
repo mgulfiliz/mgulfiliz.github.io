@@ -12,7 +12,7 @@
 @layer components {
   /* Terminal prompt styles */
   .terminal-prompt {
-    @apply flex;
+    @apply flex flex-wrap text-sm sm:text-base;
   }
 
   .terminal-prompt-user {
@@ -76,6 +76,31 @@
     vertical-align: text-bottom;
     margin-left: 2px;
   }
+
+  /* Update terminal prompt styles for mobile */
+  .terminal-prompt {
+    @apply flex flex-wrap text-sm sm:text-base;
+  }
+
+  /* Make text more readable on mobile */
+  .terminal-theme {
+    @apply text-sm sm:text-base;
+  }
+
+  /* Adjust glow effect for mobile */
+  @media (max-width: 640px) {
+    .glow-text {
+      text-shadow: 0 0 5px theme("colors.terminal.glow.base"),
+        0 0 10px theme("colors.terminal.glow.base");
+    }
+  }
+
+  /* Adjust scrollbar for mobile */
+  @media (max-width: 640px) {
+    ::-webkit-scrollbar {
+      width: 4px;
+    }
+  }
 }
 
 @keyframes glow {
@@ -89,4 +114,14 @@
       0 0 20px theme("colors.terminal.glow.base"),
       0 0 30px theme("colors.terminal.glow.base");
   }
+}
+
+/* Add responsive font sizes */
+html {
+  @apply text-[14px] sm:text-[16px];
+}
+
+/* Ensure links are properly styled on mobile */
+a {
+  @apply break-all sm:break-normal;
 }

@@ -165,13 +165,19 @@ export default function Home() {
   }, [commandHistory]);
 
   return (
-    <div className="min-h-screen terminal-theme p-4 font-mono">
-      <div ref={containerRef} className="h-[95vh] overflow-y-auto">
+    <div className="min-h-screen terminal-theme p-2 sm:p-4 font-mono">
+      <div ref={containerRef} className="h-[90vh] sm:h-[95vh] overflow-y-auto">
         <div className="mb-4">
           <pre
-            className="text-terminal-text mb-4"
+            className="text-terminal-text mb-4 hidden sm:block"
             dangerouslySetInnerHTML={{ __html: WELCOME_BANNER }}
           />
+          <div className="text-terminal-text mb-4 sm:hidden">
+            <h1 className="text-xl font-bold mb-2">
+              Welcome to Terminal Portfolio
+            </h1>
+            <p>Type 'help' for available commands</p>
+          </div>
           <div className="mb-2">
             <Typewriter
               text={`Last login: ${new Date().toLocaleString()}`}
@@ -206,7 +212,7 @@ export default function Home() {
 
         {commandHistory.map((item, index) => (
           <div key={index} className="mb-2">
-            <div className="terminal-prompt">
+            <div className="terminal-prompt flex flex-wrap">
               <span className="terminal-prompt-user">guest</span>
               <span className="terminal-prompt-at">@</span>
               <span className="terminal-prompt-host">portfolio</span>
@@ -214,12 +220,15 @@ export default function Home() {
               <span className="terminal-prompt-path">~</span>
               <span className="terminal-prompt-symbol">$ {item.command}</span>
             </div>
-            <div className="mt-1">{item.output}</div>
+            <div className="mt-1 break-words">{item.output}</div>
           </div>
         ))}
 
         {showPrompt && !sessionStarting && (
-          <form onSubmit={handleSubmit} className="terminal-prompt">
+          <form
+            onSubmit={handleSubmit}
+            className="terminal-prompt flex flex-wrap"
+          >
             <span className="terminal-prompt-user">guest</span>
             <span className="terminal-prompt-at">@</span>
             <span className="terminal-prompt-host">portfolio</span>
@@ -231,7 +240,7 @@ export default function Home() {
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              className="flex-1 bg-transparent outline-none ml-2 text-terminal-text"
+              className="flex-1 bg-transparent outline-none ml-2 text-terminal-text w-full sm:w-auto"
               autoFocus
             />
           </form>
