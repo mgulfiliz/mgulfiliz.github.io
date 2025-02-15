@@ -1,0 +1,92 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .terminal-theme {
+    background-color: theme("colors.terminal.bg");
+    color: theme("colors.terminal.text");
+  }
+}
+
+@layer components {
+  /* Terminal prompt styles */
+  .terminal-prompt {
+    @apply flex;
+  }
+
+  .terminal-prompt-user {
+    color: theme("colors.terminal.prompt.user");
+  }
+
+  .terminal-prompt-at {
+    color: theme("colors.terminal.prompt.at");
+  }
+
+  .terminal-prompt-host {
+    color: theme("colors.terminal.prompt.host");
+  }
+
+  .terminal-prompt-colon {
+    color: theme("colors.terminal.prompt.colon");
+  }
+
+  .terminal-prompt-path {
+    color: theme("colors.terminal.prompt.path");
+  }
+
+  .terminal-prompt-symbol {
+    color: theme("colors.terminal.prompt.symbol");
+  }
+
+  /* Scrollbar styles */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: theme("colors.terminal.scrollbar.track");
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: theme("colors.terminal.scrollbar.thumb");
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: theme("colors.terminal.scrollbar.hover");
+  }
+
+  /* Glow effect */
+  .glow-text {
+    color: theme("colors.terminal.glow.base");
+    text-shadow: 0 0 10px theme("colors.terminal.glow.base"),
+      0 0 20px theme("colors.terminal.glow.base"),
+      0 0 30px theme("colors.terminal.glow.base");
+    animation: glow 1s ease-in-out infinite alternate;
+  }
+
+  /* Blinking cursor effect */
+  .cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1.2em;
+    background-color: theme("colors.terminal.cursor");
+    animation: blink 1s step-end infinite;
+    vertical-align: text-bottom;
+    margin-left: 2px;
+  }
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 5px theme("colors.terminal.glow.base"),
+      0 0 10px theme("colors.terminal.glow.base"),
+      0 0 15px theme("colors.terminal.glow.base");
+  }
+  to {
+    text-shadow: 0 0 10px theme("colors.terminal.glow.base"),
+      0 0 20px theme("colors.terminal.glow.base"),
+      0 0 30px theme("colors.terminal.glow.base");
+  }
+}
